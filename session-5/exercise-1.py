@@ -27,6 +27,7 @@ def  count_bases(seq):
 
 # Main programme
 s=input('Please enter the DNA sequence: ')
+s= s.upper()
 info= count_bases(s)
 
 
