@@ -27,7 +27,9 @@ def  count_bases(seq):
 
 # Main programme
 s1=input('Please enter the DNA sequence 1: ')
+s1= s1.upper()
 s2=input('Please enter the DNA sequence 2: ')
+s2= s2.upper()
 list_1=[s1,s2]
 
 for element in list_1:
