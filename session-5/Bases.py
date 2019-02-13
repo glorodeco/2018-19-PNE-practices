@@ -1,5 +1,4 @@
 def  count_bases(seq):
-    """""Counting the number of As in the sequence"""
 
 
    # Counter for the bases
