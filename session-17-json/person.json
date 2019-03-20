@@ -1,0 +1,29 @@
+[
+  {
+    "FirstName":  "troll",
+    "Lastname": "Face",
+    "Age": 20,
+    "Phonenumber": [
+      {"number": "3987459", "type":  "home"},
+      {"number": "98345", "type":  "work"}
+    ]},
+
+  {
+    "FirstName":  "Pedro",
+    "Lastname": "Picapiedra",
+    "Age": 20000000,
+    "Phonenumber": [
+      {"number": "334985723", "type":  "cueva"},
+      {"number": "8934", "type":  "tronco mobile"}
+    ]},
+
+    {
+    "FirstName":  "Manolo",
+    "Lastname": "el del bombo",
+    "Age": 100,
+    "Phonenumber": [
+      {"number": "77459", "type":  "home"},
+      {"number": "928375", "type":  "mobile"}
+    ]}
+]
+
