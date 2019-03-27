@@ -3,7 +3,7 @@ import socketserver
 import termcolor
 
 
-PORT = 8080
+PORT = 8081
 
 
 class TestHandler(http.server.BaseHTTPRequestHandler):
@@ -23,11 +23,11 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
             with open("index.html", "r") as f:
                 contents = f.read()
                 f.close()
-        elif self.path == "/blue":
+        elif self.path == "/blue.html":
             with open("blue.html", "r") as f:
                 contents = f.read()
                 f.close()
-        elif self.path == "/pink":
+        elif self.path == "/pink.html":
             with open("pink.html", "r") as f:
                 contents = f.read()
                 f.close()
