@@ -4,90 +4,44 @@ import json
 # -- API information
 
 
-def retrievewoeid (city):
+#def retrievewoeid (city):
 
-    try:
-        HOSTNAME = "www.metaweather.com"
-
-        ENDPOINT = "/api/location//search/?query"
-        ENDPOINT += city
-        METHOD = "GET"
-
-
-        # -- Here we can define special headers if needed
-        headers = {'User-Agent': 'http-client'}
-
-        # -- Connect to the server
-        # -- NOTICE it is an HTTPS connection!
-        conn = http.client.HTTPSConnection(HOSTNAME)
-
-        # -- Send the request. No body (None)
-        # -- Use the defined headers
-        conn.request(METHOD, ENDPOINT, None, headers)
-
-        # -- Wait for the server's response
-
-        r2 = conn.getresponse()
-
-        # -- Print the status
-        print()
-        print("Response received: ", end='')
-        print(r2.status, r2.reason)
-
-        # -- Read the response's body and close
-        # -- the connection
-        text_json = r2.read().decode("utf-8")
-        conn.close()
-
-        # -- Optionally you can print the
-        # -- received json file for testing
-        # print(text_json)
-
-        # -- Generate the object from the json file
-        weather = json.loads(text_json)
-
-        return weather[0]['woeid']
-
-    except:
-
-        return False
 
 HOSTNAME = "www.metaweather.com"
-ENDPOINT = "/api/location//search/?query"
+METHOD = "GET"
 
 
-city= input('Your city: ')
+# -- Here we can define special headers if needed
+headers = {'User-Agent': 'http-client'}
 
-if not (retrievewoeid(city)):
-    print('Your city is not important for me')
+# -- Connect to the server
+# -- NOTICE it is an HTTPS connection!
+conn = http.client.HTTPSConnection(HOSTNAME)
 
-else:
-    LOCATION_WOEID = str(retrievewoeid(city))
-    METHOD = 'GET'
+aa= True
+woeid=0
+city = input('Introduce your city: ')
+while aa:
 
-    headers = {'User-Agent': 'http-client'}
-
-    # -- Connect to the server
-    # -- NOTICE it is an HTTPS connection!
-    # -- If we do not specify the port, the standar one
-    # -- will be used
-    conn = http.client.HTTPSConnection(HOSTNAME)
-
+    ENDPOINT = "/api/location/search/?query={}".format(city)
     # -- Send the request. No body (None)
     # -- Use the defined headers
-    conn.request(METHOD, ENDPOINT + LOCATION_WOEID + '/', None, headers)
+    conn.request(METHOD, ENDPOINT, None, headers)
 
     # -- Wait for the server's response
-    r2 = conn.getresponse()
+
+    r1 = conn.getresponse()
 
     # -- Print the status
     print()
     print("Response received: ", end='')
-    print(r2.status, r2.reason)
+    print(r1.status, r1.reason)
 
     # -- Read the response's body and close
     # -- the connection
-    text_json = r2.read().decode("utf-8")
+
+
+    text_json = r1.read().decode("utf-8")
     conn.close()
 
     # -- Optionally you can print the
@@ -97,17 +51,40 @@ else:
     # -- Generate the object from the json file
     weather = json.loads(text_json)
 
-    # -- Get the data
-    time = weather['time']
-    temp0 = weather['consolidated_weather'][0]
-    description = temp0['weather_state_name']
-    temp = temp0['the_temp']
-    place = weather['title']
+    if len(weather)==0:
+        print('Your capital is not in the data base')
+        #return msg
 
-    print()
-    print("Place: {}".format(place))
-    print("Time: {}".format(time))
-    print("Weather description: {}".format(description))
-    print("Temperature: {} degrees".format(temp))
+    else:
+        aa=False
+        woeid= weather[0]['woeid']
+
+ENDPOINT = '/api/location/{}/'.format(woeid)
+
+# -- Send the request. No body (None)
+# -- Use the defined headers
+conn.request(METHOD, ENDPOINT, None)
+
+# -- Wait for the server's response
+# -- Read the response message from the server
+r1 = conn.getresponse()
+
+# -- Read the response's body
+data1 = r1.read().decode("utf-8")
+
+info = json.loads(data1)
+
+time = info['time']
+sunset = info['sun_set']
+temp = info['consolidated_weather'][0]['the_temp']
+
+print("In {} the ime is: {}".format(city, time))
+print("The temperature in {} is {}ºC".format(city, temp))
+print("The sunset in {} is at {}".format(city, sunset))
 
 
+
+
+
+
+#retrievewoeid (city)
