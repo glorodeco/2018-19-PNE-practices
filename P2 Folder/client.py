@@ -6,9 +6,9 @@ import socket
 while True:
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-    PORT = 8081
+    PORT = 8082
 
-    IP="212.128.253.69"
+    IP="212.128.253.74"
 
     s.connect((IP, PORT))
 
