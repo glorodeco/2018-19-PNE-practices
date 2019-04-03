@@ -45,7 +45,9 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                     contents = f.read()
                     contents = contents.replace("#error#", 'The sequence introduced is not correct.')
 
-            contents = contents.replace("#seq#", str(seq))
+
+
+            contents = contents.replace("#seq#", str(msg))
             if chk == 'on':
                 seq_length = seq.len()
                 contents = contents.replace("#len#", str(seq_length))
