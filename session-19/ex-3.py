@@ -73,15 +73,14 @@ conn.request(METHOD, ENDPOINT + VAR , None, headers)
 # -- Wait for the server's response
 r1 = conn.getresponse()
 
-# -- Print the status
-print()
-print("Response received: ", end='')
-print(r1.status, r1.reason)
+
 
 # -- Read the response's body and close
 # -- the connection
 text_json = r1.read().decode("utf-8")
 info= json.loads(text_json)
+print('-'*10)
+print('The repositories are: ')
 for element in info:
     # -- Get some data
     name_repos = element['name']
@@ -89,7 +88,7 @@ for element in info:
     print(name_repos)
 
 #--------------------------------------
-/repos/Obijuan/2018-19-PNE-practices/contributors
+#/repos/Obijuan/2018-19-PNE-practices/contributors
 REPOS='/repos/'
 FOLD= '/2018-19-PNE-practices'
 CONTR= '/contributors'
@@ -104,23 +103,17 @@ conn = http.client.HTTPSConnection(HOSTNAME)
 
 # -- Send the request. No body (None)
 # -- Use the defined headers
-conn.request(METHOD, REPOS+github_ , None, headers)
+conn.request(METHOD, REPOS + GITHUB_ID + FOLD + CONTR , None, headers)
 
 # -- Wait for the server's response
 r1 = conn.getresponse()
 
-# -- Print the status
-print()
-print("Response received: ", end='')
-print(r1.status, r1.reason)
 
 # -- Read the response's body and close
 # -- the connection
 text_json = r1.read().decode("utf-8")
-info= json.loads(text_json)
-for element in info:
-    # -- Get some data
-    name_repos = element['name']
-
-    print(name_repos)
+commits = json.loads(text_json)
+times = commits[0]['contributions']
+print('-'*10)
+print('The times of contributions in the repository 2018-19-PNE-practices is:', times)
 
