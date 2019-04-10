@@ -62,7 +62,7 @@ perc_G = FRAT1_seq.perc('G')
 # -- Printing the result
 print("There are {} bases in the FRAT1 gene.".format(length))
 print("There are {} T bases in the FRAT1 gene.".format(T))
-print("{} is the most popular base in the FRAT1 gene. With the percentage: {}%".format(popular_base, Perc_pop))
+print("The most popular base in the FRAT1 gene is: {}. With the percentage: {}%".format(popular_base, Perc_pop))
 if popular_base == 'A':
     print("Percentage of the base T: {}%".format(perc_T))
     print("Percentage of the base C: {}%".format(perc_C))
