@@ -5,13 +5,12 @@ import json
 from SeqP1 import Seq
 
 
-PORT = 80
+
 SERVER = 'rest.ensembl.org'
 
-print("\nConnecting to server: {}:{}\n".format(SERVER, PORT))
 
 # Connect with the server
-conn = http.client.HTTPConnection(SERVER, PORT)
+conn = http.client.HTTPConnection(SERVER)
 
 headers = {'Content-type': 'text/plain'}
 
